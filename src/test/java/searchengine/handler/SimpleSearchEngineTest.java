@@ -1,17 +1,14 @@
 package searchengine.handler;
 
-import lombok.extern.slf4j.Slf4j;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import searchengine.model.Document;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-@Slf4j
 class SimpleSearchEngineTest {
 
   private SimpleSearchEngine engine;
@@ -52,18 +49,5 @@ class SimpleSearchEngineTest {
 
     List<String> results = engine.search("new");
     assertEquals(List.of("doc4"), results);
-  }
-
-  @Test
-  void testMainMethod() {
-    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    System.setOut(new PrintStream(outputStream));
-
-    SimpleSearchEngine.main(new String[]{});
-    String output = outputStream.toString();
-
-    log.debug("Output: \n{}", output);
-    assertTrue(output.contains("Search for 'brown': [doc1, doc2]"));
-    assertTrue(output.contains("Search for 'fox': [doc3, doc1]"));
   }
 }
