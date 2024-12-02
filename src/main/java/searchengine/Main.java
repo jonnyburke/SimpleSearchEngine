@@ -20,15 +20,28 @@ import java.util.Scanner;
 public class Main {
   public static void main(String[] args) {
     SimpleSearchEngine engine = new SimpleSearchEngine();
+    Scanner scanner = new Scanner(System.in);
 
-    engine.addDocument(new Document("doc1", "the brown fox jumped over the brown dog"));
-    engine.addDocument(new Document("doc2", "the lazy brown dog sat in the corner"));
-    engine.addDocument(new Document("doc3", "the red fox bit the lazy dog"));
+    log.info("Welcome to the Simple Search Engine!");
+    log.info("Please enter your documents one by one. Type 'done' when finished:");
 
-    log.info("Simple Search Engine initialized with 3 documents.");
+    int docCounter = 1;
+    while (true) {
+      log.info("Enter content for document {} (or type 'done'):", docCounter);
+      String content = scanner.nextLine().trim();
+
+      if ("done".equalsIgnoreCase(content)) {
+        log.info("Finished adding documents.");
+        break;
+      }
+
+      engine.addDocument(new Document("doc" + docCounter, content));
+      docCounter++;
+    }
+
+    log.info("Simple Search Engine initialized with {} documents.", docCounter - 1);
     log.info("Type a term to search (or type 'exit' to quit):");
 
-    Scanner scanner = new Scanner(System.in);
     while (true) {
       log.info("Enter search term: ");
       String query = scanner.nextLine().trim();
