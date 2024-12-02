@@ -16,7 +16,15 @@ class MainTest {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outputStream));
 
-    String simulatedUserInput = "brown\nfox\nexit\n";
+    String simulatedUserInput = """
+                the brown fox jumped over the brown dog
+                the lazy brown dog sat in the corner
+                the red fox bit the lazy dog
+                done
+                brown
+                fox
+                exit
+                """;
     System.setIn(new ByteArrayInputStream(simulatedUserInput.getBytes()));
 
     Main.main(new String[]{});
@@ -35,7 +43,14 @@ class MainTest {
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outputStream));
 
-    String simulatedUserInput = "unicorn\nexit\n";
+    String simulatedUserInput = """
+                the brown fox jumped over the brown dog
+                the lazy brown dog sat in the corner
+                the red fox bit the lazy dog
+                done
+                unicorn
+                exit
+                """;
     System.setIn(new ByteArrayInputStream(simulatedUserInput.getBytes()));
 
     Main.main(new String[]{});
